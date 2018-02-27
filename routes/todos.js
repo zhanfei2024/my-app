@@ -4,6 +4,7 @@ var model = require('../models/index');
 
 /* GET todo listing. */
 router.get('/', function(req, res, next) {
+  console.log('22222')
   model.Todo.findAll({})
     .then(todos => res.json({
       error: false,
@@ -66,9 +67,10 @@ router.put('/:id', function(req, res, next) {
 });
 
 
-/* GET todo listing. */
+/* DELETE todo. */
 router.delete('/:id', function(req, res, next) {
   const todo_id = req.params.id;
+  console.log(todo_id, '-----------------')
   model.Todo.destroy({where: {
     id: todo_id
   }})
@@ -78,7 +80,6 @@ router.delete('/:id', function(req, res, next) {
     }))
     .catch(error => res.json({
       error: true,
-      data: [],
       error: error
     }));
 });

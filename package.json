@@ -16,5 +16,9 @@
     "mysql2": "^1.5.2",
     "sequelize": "^4.33.4",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0"
   }
 }
