@@ -1,9 +1,9 @@
 // Image Mixins
-// - Responsive image
-// - Retina image
+// - Responsive img
+// - Retina img
 
 
-// Responsive image
+// Responsive img
 //
 // Keep images from scaling beyond the width of their parents.
 @mixin img-responsive($display: block) {
@@ -13,9 +13,9 @@
 }
 
 
-// Retina image
+// Retina img
 //
-// Short retina mixin for setting background-image and -size. Note that the
+// Short retina mixin for setting background-img and -size. Note that the
 // spelling of `min--moz-device-pixel-ratio` is intentional.
 @mixin img-retina($file-1x, $file-2x, $width-1x, $height-1x) {
   background-image: url(if($bootstrap-sass-asset-helper, twbs-image-path("#{$file-1x}"), "#{$file-1x}"));

@@ -1,9 +1,9 @@
 // Image Mixins
-// - Responsive image
-// - Retina image
+// - Responsive img
+// - Retina img
 
 
-// Responsive image
+// Responsive img
 //
 // Keep images from scaling beyond the width of their parents.
 
@@ -16,9 +16,9 @@
 }
 
 
-// Retina image
+// Retina img
 //
-// Short retina mixin for setting background-image and -size.
+// Short retina mixin for setting background-img and -size.
 
 // stylelint-disable indentation, media-query-list-comma-newline-after
 @mixin img-retina($file-1x, $file-2x, $width-1x, $height-1x) {
