@@ -4,7 +4,6 @@ var model = require('../models/index');
 
 /* GET todo listing. */
 router.get('/', function(req, res, next) {
-  console.log('22222')
   model.Todo.findAll({})
     .then(todos => res.json({
       error: false,
@@ -17,27 +16,60 @@ router.get('/', function(req, res, next) {
     }));
 });
 
+/* GET todo detail.*/
+router.get('/:id', function (req, res, next) {
+  const todo_id = req.params.id;
+    model.Todo.findById(todo_id)
+        .then(todo => res.json({
+            error: false,
+            data: todo
+        }))
+        .catch(error => res.json({
+            error: true,
+            data: [],
+            error: error
+        }))
+})
 
 /* POST todo. */
 router.post('/', function(req, res, next) {
-  const {
-    title,
-    description
-  } = req.body;
-  model.Todo.create({
-    title: title,
-    description: description
-  }).then(todo => res.status(201).json({
-    error: false,
-    data: todo,
-    message: 'New todo has been created.'
-  }))
-  .catch(error => res.json({
-    error: true,
-    data: [],
-    error: error
-  }));
+    const {
+        title,
+        description
+    } = req.body;
+    model.Todo.findOrCreate({
+        where: {title: title},
+        defaults: {description: description}
+    }).spread(function (user, created) {
+        console.log(user.get({
+            plain: true
+        }));
+        if (created) {
+          res.status(201)
+        }
+        console.log(created)
+    })
 });
+
+// router.post('/', function(req, res, next) {
+//   const {
+//     title,
+//     description
+//   } = req.body;
+//   model.Todo.create({
+//     title: title,
+//     description: description
+//   }).then(todo => res.status(201).json({
+//     error: false,
+//     data: todo,
+//     message: 'New todo has been created.'
+//   }))
+//   .catch(error => res.json({
+//     error: true,
+//     data: [],
+//     error: error
+//   }));
+// });
 
 
 /* update todo. */
