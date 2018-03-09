@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "./bin/www",
+    "dev": "./node_modules/.bin/gulp develop --gulpfile gulp_dev.js",
+    "ci": "./node_modules/.bin/gulp test --gulpfile gulp_test.js",
+    "assets": "./node_modules/.bin/gulp build --gulpfile gulp_build.js",
+    "assets_dev": "./node_modules/.bin/gulp build --dev --gulpfile gulp_build.js",
+    "watch": "./node_modules/.bin/gulp watch --gulpfile gulp_build.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -11,16 +16,33 @@
     "debug": "~2.6.9",
     "express": "^4.16.2",
     "jade": "~1.11.0",
+    "jsonfile": "^4.0.0",
     "jsonwebtoken": "^8.2.0",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.2",
     "pg": "^7.4.1",
+    "run-sequence": "^2.2.1",
     "sequelize": "^4.33.4",
     "serve-favicon": "~2.4.5"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-compass": "^2.1.0"
+    "gulp-nodemon": "2.0.2",
+    "gulp": "3.9.0",
+    "gulp-bower": "0.0.10",
+    "gulp-clean": "0.3.1",
+    "gulp-cssmin": "0.1.7",
+    "gulp-eslint": "1.0.0",
+    "gulp-if": "1.2.5",
+    "gulp-uglify": "1.5.3",
+    "gulp-rev-all-fixed": "0.8.24",
+    "gulp-livereload": "3.8.0",
+    "gulp-plumber": "1.0.0",
+    "gulp-replace": "0.5.4",
+    "gulp-rev-all": "0.8.21",
+    "gulp-sass": "2.0.4",
+    "compass-mixins": "0.12.7",
+    "node-sass": "3.4.2",
+    "yargs": "3.25.0"
   }
 }
