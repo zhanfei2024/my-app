@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var jwt = require('jsonwebtoken');
+var jwt = require('./controll/jwt');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var todos = require('./routes/todos');
@@ -35,34 +35,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(allowCrossDomain);
 
 
+app.use('/todos', todos);
 app.use('/user', user);
-// app.use(function(req, res, next) {
-//     // 检查post的信息或者url查询参数或者表头
-//     var token = req.body.token || req.query.token || req.headers['x-access-token'];
-//     console.log(token)
-//     //解析token
-//     if(token) {
-//       // 验证token
-//       jwt.verify(token, '1', function(err, decoded) {
-//         if (err) {
-//           return res.json({error: true, message: 'token信息错误'});
-//         } else {
-//           // 如果没问题就把解码后的信息保存到请求中，供后面的路由使用
-//           req.decoded = decoded;
-//           next();
-//         }
-//       })
-//     } else {
-//          // 如果没有token，则返回错误
-//          return res.status(403).send({
-//           success: false,
-//           message: '没有提供token！'
-//       });
-//     }
-// });
+
+//请求路由时，添加验证
+app.use(jwt.jwtVer);
 
 app.use('/', index);
-app.use('/todos', todos);
+
 
 
 // catch 404 and forward to error handler
