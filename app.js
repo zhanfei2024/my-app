@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var todos = require('./routes/todos');
 var user = require('./routes/user');
+var relation = require('./models/relation')
 
 var app = express();
 
@@ -34,7 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(allowCrossDomain);
 
-
+// 通过model生产database table
+app.use(relation);
 app.use('/todos', todos);
 app.use('/user', user);
 
