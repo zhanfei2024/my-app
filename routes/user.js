@@ -1,10 +1,10 @@
 var express = require('express');
 var jwt = require('jsonwebtoken');
 var router = express.Router();
-var model = require('../models/index');
+var model = require('../models/relation');
 
 router.get('/', function(req, res, next) {
-    model.user.findAll({})
+    model.User.findAll({})
     .then(users => res.json({
         error: false,
         data: users
@@ -17,12 +17,12 @@ router.get('/', function(req, res, next) {
 })
 
 router.post('/login', function(req, res, next) {
-    const name = req.body.name;
+    const name = req.body.username;
     const password = req.body.password;
-
-    model.user.findOne({
+    console.log(model)
+    model.User.findOne({
         where: {
-            name: name
+            username: name
         }
     }).then(user => {
         if (!user) {
@@ -35,7 +35,7 @@ router.post('/login', function(req, res, next) {
    
             } else {
                 const payload = {
-                    admin: user.dataValues.admin
+                    active: user.dataValues.active
                 }
                 // 创建token
                 var token = jwt.sign(payload, '1', {expiresIn: '1h'});
@@ -62,19 +62,37 @@ router.post('/login', function(req, res, next) {
 /* POST todo. */
 router.post('/signup', function(req, res, next) {
   const {
-    name,
+    username,
     password,
-    admin
+    active,
+    roleName
   } = req.body;
-  model.user.create({
-    name: name,
+  Promise.all([
+      model.User.create({
+          username: username,
+          password: password,
+          active: active
+      }),
+      model.Role.create({
+          roleName: roleName
+      })
+  ]).then(function (results) {
+      var user = results[0];
+      var role = results[1];
+      user.setUserData(role);
+  })
+  model.User.create({
+    username: username,
     password: password,
-    admin: admin
-  }).then(user => res.status(201).json({
+    active: active
+  }).then(user => function () {
+    var userCheckin = model.UserCheckin.create({loginIp:'127.0.0.1'});
+    user.posetUserCheckin(userCheckin);
+    return res.status(201).json({
     error: false,
     data: user,
     message: 'New user has been created.'
-  }))
+  });})
   .catch(error => res.json({
     error: true,
     data: [],

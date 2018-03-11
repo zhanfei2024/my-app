@@ -1,6 +1,6 @@
 'use strict';
 
-var sequelize=require('./index');
+var sequelize=require('./_db').sequelize();
 var User = sequelize.import('./user.js');
 var UserCheckin = sequelize.import('./userCheckin.js');
 var UserAddress = sequelize.import('./userAddress.js');
@@ -14,10 +14,14 @@ User.belongsToMany(Role, {through: 'userRoles', as:'UserRoles'});
 Role.belongsToMany(User, {through: 'userRoles', as:'UserRoles'});
 
 // 同步模型到数据库中
-module.exports =function () {
-    sequelize.sync();
-    console.log('ok table')
-}
+// module.exports =async function () {
+//     try {
+//         console.log('ok table');
+//         await sequelize.sync();
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
 
 exports.User = User;
 exports.UserCheckin = UserCheckin;

@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var todos = require('./routes/todos');
 var user = require('./routes/user');
+var role = require('./routes/role');
 var relation = require('./models/relation')
 
 var app = express();
@@ -17,7 +18,6 @@ var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
-
   next();
 }
 
@@ -36,9 +36,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(allowCrossDomain);
 
 // 通过model生产database table
-app.use(relation);
+// app.use(relation);
 app.use('/todos', todos);
 app.use('/user', user);
+app.use('/role', role);
 
 //请求路由时，添加验证
 app.use(jwt.jwtVer);

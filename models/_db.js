@@ -3,6 +3,8 @@
 var Sequelize = require('sequelize');
 
 exports.sequelize = function () {
-    return new Sequelize('modelTest', 'zhanfei', 'emcoo',
-        {host: 'localhost', port:5432, logging:console.log});
+    return new Sequelize('test', 'root', '1',
+        {   host: '127.0.0.1',
+            dialect: 'mysql'
+        });
 }
