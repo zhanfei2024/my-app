@@ -1,6 +1,12 @@
 module.exports = function (sequelzie, DataTypes) {
-    return sequelzie.define('usercheckin', {
-        id: {type: DataTypes.BIGINT, autoIncrement: true, primaryKey: true, unicode: true},
+    return sequelzie.define(
+        'usercheckin', {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+            unicode: true
+        },
         userId: {
             type: DataTypes.BIGINT,
             field: 'user_id',

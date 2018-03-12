@@ -10,7 +10,10 @@ var users = require('./routes/users');
 var todos = require('./routes/todos');
 var user = require('./routes/user');
 var role = require('./routes/role');
-var relation = require('./models/relation')
+var userCheckin = require('./routes/userCheckin');
+var userAddress = require('./routes/userAddress');
+var relation = require('./models/relation');
+
 
 var app = express();
 
@@ -40,9 +43,11 @@ app.use(allowCrossDomain);
 app.use('/todos', todos);
 app.use('/user', user);
 app.use('/role', role);
+app.use('/userCheckin', userCheckin);
+app.use('/userAddress', userAddress);
 
 //请求路由时，添加验证
-app.use(jwt.jwtVer);
+// app.use(jwt.jwtVer);
 
 app.use('/', index);
 

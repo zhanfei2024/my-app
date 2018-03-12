@@ -3,8 +3,8 @@
 var Sequelize = require('sequelize');
 
 exports.sequelize = function () {
-    return new Sequelize('test', 'root', '1',
+    return new Sequelize('test', 'zhanfei', 'emcoo',
         {   host: '127.0.0.1',
-            dialect: 'mysql'
+            dialect: 'postgres'
         });
 }

@@ -14,14 +14,7 @@ User.belongsToMany(Role, {through: 'userRoles', as:'UserRoles'});
 Role.belongsToMany(User, {through: 'userRoles', as:'UserRoles'});
 
 // 同步模型到数据库中
-// module.exports =async function () {
-//     try {
-//         console.log('ok table');
-//         await sequelize.sync();
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
+module.exports = sequelize.sync();
 
 exports.User = User;
 exports.UserCheckin = UserCheckin;
