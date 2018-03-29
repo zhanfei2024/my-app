@@ -11,13 +11,16 @@
     "watch": "./node_modules/.bin/gulp watch --gulpfile gulp_build.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
+    "debug": "^2.6.9",
     "express": "^4.16.2",
+    "input-check": "^2.5.0",
     "jade": "~1.11.0",
     "jsonfile": "^4.0.0",
     "jsonwebtoken": "^8.2.0",
+    "lodash": "^4.17.5",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.2",

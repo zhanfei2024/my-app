@@ -12,7 +12,7 @@ var user = require('./routes/user');
 var role = require('./routes/role');
 var userCheckin = require('./routes/userCheckin');
 var userAddress = require('./routes/userAddress');
-var relation = require('./models/relation');
+
 
 
 var app = express();
@@ -38,8 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(allowCrossDomain);
 
-// 通过model生产database table
-// app.use(relation);
+
 app.use('/todos', todos);
 app.use('/user', user);
 app.use('/role', role);
