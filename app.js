@@ -39,6 +39,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(allowCrossDomain);
 
 
+/**
+ * Validation Init
+ */
+const inpu
+
 app.use('/todos', todos);
 app.use('/user', user);
 app.use('/role', role);
